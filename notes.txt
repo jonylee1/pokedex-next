@@ -1,0 +1,26 @@
+Requirements:
+* list of pokemon to search against
+* be able to select pokemon
+* retrieve details of pokemon from PokeAPI
+* maintain a list of favorite pokemon?
+** include a way to add and remove pokemon to the favorites list
+* add custom pokemon?
+** name, details, picture
+
+Technical Aspect:
+* use a modern CSS framework on how to style react components
+* create themes (light/dark/custom?)
+* create a database to persist data
+* create a user login and store their data
+* Pokeshop
+
+Tech Stack:
+* Tailwind CSS
+* NextJS + React
+* PostgreSQL
+* backend service/api? see how NextJS supports having a backend api
+* NestJS
+
+TODO:
+* Configure project and install dependencies as we need them
+* 
