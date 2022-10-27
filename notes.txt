@@ -23,4 +23,4 @@ Tech Stack:
 
 TODO:
 * Configure project and install dependencies as we need them
-* 
+* Check out why TailwindCSS is not happy. I think we're currently using the Tailwind CLI setup, maybe switch to PostCSS? https://tailwindcss.com/docs/installation/using-postcss
