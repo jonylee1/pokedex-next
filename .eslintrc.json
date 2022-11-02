@@ -1,5 +1,5 @@
 {
-  "extends": ["next", "prettier"],
+  "extends": ["next"],
   "rules": {
     "arrowParens": "always",
     "bracketSpacing": true,

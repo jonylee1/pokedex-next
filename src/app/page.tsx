@@ -1,15 +1,37 @@
 // Import your Client Component
-import HomePage from './HomePage';
+import { NamedAPIResourceList } from 'pokenode-ts';
 
-// async function getPosts() {
-//   const res = await fetch('https://...');
-//   const posts = await res.json();
-//   return posts;
-// }
+async function fetchData(): Promise<NamedAPIResourceList> {
+  const res = await fetch(
+    `https://pokeapi.co/api/v2/pokemon`
+  );
+  const data = await res.json();
+  return data;
+}
 
 export default async function Page() {
-  // Fetch data directly in a Server Component
-  //const recentPosts = await getPosts();
-  // Forward fetched data to your Client Component
-  return <HomePage />;
+  const data = await fetchData();
+
+  function listOfPokemon() {
+    return (
+      <>
+        {data.results.map((pokemon) => {
+          return <li>{pokemon.name}</li>
+        })}
+      </>
+    )
+  }  
+  
+  if (data) {
+    return (
+      <>
+        <div>
+        There are {data.count} pokemon.
+        </div>
+        
+        {listOfPokemon()}
+      </>
+    )
+  }
+  return <div>Loading...</div>
 }

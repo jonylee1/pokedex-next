@@ -4,7 +4,11 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
-  }
+  },
+  // basePath: '/src',
+  // async redirects() {
+  //   return [];
+  // }
 }
 
 module.exports = nextConfig
