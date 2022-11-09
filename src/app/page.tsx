@@ -1,35 +1,46 @@
-// Import your Client Component
-import { NamedAPIResourceList } from 'pokenode-ts';
+"use client";
+import { NamedAPIResourceList } from "pokenode-ts";
+import { useEffect, useState } from "react";
+import { fetchPokemonList } from "./api";
 
-async function fetchData(): Promise<NamedAPIResourceList> {
-  const res = await fetch(
-    `https://pokeapi.co/api/v2/pokemon`
-  );
-  const data = await res.json();
-  return data;
-}
-
-export default async function Page() {
-  const data = await fetchData();
-
-  function listOfPokemon() {
+function listOfPokemon(data: NamedAPIResourceList) {
+  if (data) {
     return (
       <>
         {data.results.map((pokemon) => {
-          return <li>{pokemon.name}</li>
+          const pokemonURL = pokemon.url;
+          const index = pokemonURL.indexOf('pokemon');
+          const pokemonPath = pokemonURL.substring(index);
+          return <li key={pokemon.name}><a href={`/${pokemonPath}`}>{pokemon.name}</a></li>
         })}
       </>
     )
-  }  
-  
-  if (data) {
+  } else {
+    return (
+      <></>
+    )
+  }
+}
+
+export default function Page() {
+  const [data, setData] = useState<NamedAPIResourceList>({count: 0, next: null, previous: null, results: []});
+
+  useEffect(() => {
+    fetchPokemonList().then((data) => {
+      setData(data);
+    })
+  },[]);
+
+
+
+  if (data.count !== 0) {
     return (
       <>
         <div>
         There are {data.count} pokemon.
         </div>
         
-        {listOfPokemon()}
+        {listOfPokemon(data)}
       </>
     )
   }

@@ -22,4 +22,10 @@ Tech Stack:
 * NestJS
 
 TODO:
-* Configure project and install dependencies as we need them
+* Got data from PokeAPI and rendered it in a component on a page.
+* Return pokemon data as a component and try and change the target pokemon that we get data from.
+* Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
+
+Learned:
+* Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
+* Client components that require data fetches need to be synchronous.
