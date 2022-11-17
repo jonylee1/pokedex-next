@@ -2,7 +2,12 @@
 import { NamedAPIResourceList } from "pokenode-ts";
 import { useEffect, useState } from "react";
 import PokemonList from "src/components/PokemonList";
+
+import DisplayScreen from '../../assets/DisplayScreen.svg';
+import ProfilePicture from '../../assets/ProfilePicture.svg';
+
 import { fetchPokemonList } from "./api";
+import Image from 'next/image';
 
 export default function Page() {
   const [data, setData] = useState<NamedAPIResourceList>({count: 0, next: null, previous: null, results: []});
@@ -16,11 +21,20 @@ export default function Page() {
   if (data.count !== 0) {
     return (
       <>
+      <div className="flex justify-center items-center">
         <div>
-          There are {data.count} pokemon.
+          <PokemonList data={data} />
         </div>
-        
-        <PokemonList data={data} />
+        <div className="flex justify-end items-center" style={{
+          backgroundImage: `url(${DisplayScreen.src})`,
+          backgroundRepeat: 'no-repeat',
+          width: DisplayScreen.width,
+          height: DisplayScreen.height,
+        }}>
+          <Image className="mr-28" src={ProfilePicture} alt="Profile Picture" height={ProfilePicture.height} width={ProfilePicture.width} />
+        </div>
+      </div>
+
       </>
     )
   }

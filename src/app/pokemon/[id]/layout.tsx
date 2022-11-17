@@ -1,6 +1,6 @@
 import '@styles/globals.css';
 
-export default function RootLayout({
+export default function Layout({
     // Layouts must accept a children prop.
     // This will be populated with nested layouts or pages
     children,
@@ -13,7 +13,7 @@ export default function RootLayout({
           <title>Next.js</title>
         </head>
         <body>
-          <div>pikachu bitches</div>
+          <div>bulbasaurs</div>
           <div>{children}</div>
         </body>
       </html>

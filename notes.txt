@@ -7,6 +7,20 @@ Requirements:
 * add custom pokemon?
 ** name, details, picture
 
+Features:
+* Favorites screen
+* Inventory for Pokemon
+* Let users save their preferences and settings
+* Displaying the Pokemon
+** Display screen should be interactive
+
+Display Pokemon
+* ID
+* Name
+* Sprites
+* Moves (Customizable)
+* Stats
+
 Technical Aspect:
 * use a modern CSS framework on how to style react components
 * create themes (light/dark/custom?)
@@ -23,9 +37,15 @@ Tech Stack:
 
 TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
-* Return pokemon data as a component and try and change the target pokemon that we get data from.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
+** Display information about the selected pokemon.
+*** How do we want to structure the routing? Does the [id] folder have to be immediately after page.tsx?
+
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
 * Client components that require data fetches need to be synchronous.
+
+11/16/22
+* The layout is served and the sibling page.tsx is loaded inside the {children}.
+* SVG components have properties available that we can access.
