@@ -39,8 +39,8 @@ TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
 ** Display information about the selected pokemon.
-*** How do we want to structure the routing? Does the [id] folder have to be immediately after page.tsx?
-
+** Get the first english description for the pokemon (see Caterpie #10)
+** Get the sprite of the pokemon and display it.
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -49,3 +49,13 @@ Learned:
 11/16/22
 * The layout is served and the sibling page.tsx is loaded inside the {children}.
 * SVG components have properties available that we can access.
+
+11/17/22
+* Learned styling using Tailwind CSS.
+* Moved the Pokemon Information styling into divs instead of SVGs.
+* Learned about routing :)
+
+11/21/22
+* NextJS adds <div>s for each Page (each nested route path adds more divs).
+  This is because of React doesn't allow finding the DOM node from a component (see: https://github.com/vercel/next.js/discussions/41745#discussioncomment-3969587)
+* Found new CSS style. 'text-transform: capitalize' will capitalize the first letter of every word in that div (however, it will not make the rest of the letters lowercase).

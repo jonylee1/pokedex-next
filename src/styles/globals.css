@@ -28,3 +28,11 @@ a {
     background: black;
   }
 }
+
+[data-nextjs-scroll-focus-boundary] {
+  display: contents;
+}
+
+.capitalize-first-letter {
+  text-transform: capitalize;
+}
