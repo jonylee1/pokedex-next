@@ -1,4 +1,4 @@
-import { Pokemon, PokemonSpecies, PokemonType } from "pokenode-ts";
+import { FlavorText, Pokemon, PokemonSpecies, PokemonType } from "pokenode-ts";
 
 interface PokemonPage {
     id: number,
@@ -14,10 +14,11 @@ export async function fetchPokemon(id: number): Promise<Pokemon> {
   return data;
 }
 
-export async function fetchPokemonDescription(url: string): Promise<PokemonSpecies> {
+export async function fetchPokemonDescription(url: string): Promise<string> {
   const res = await fetch(url);
-  const data = await res.json();
-  return data;
+  const data: PokemonSpecies = await res.json();
+  const flavorText = data.flavor_text_entries.find(flavorText => flavorText.language.name === 'en')?.flavor_text ?? 'no english flavor text found';
+  return flavorText;
 }
 
 export function formatPokemonType(types: PokemonType[]): string {
@@ -50,7 +51,7 @@ export default async function Page(props: any) {
               </div>
             </div>
             <div className="flex-grow rounded-lg bg-white bg-opacity-30">
-              {pokemonDescription.flavor_text_entries[0].flavor_text}
+              {pokemonDescription}
             </div>
           </div>
           <div className="w-1/3 h-3/4 rounded-lg bg-white bg-opacity-30 mr-28">
