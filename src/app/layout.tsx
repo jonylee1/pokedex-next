@@ -3,12 +3,12 @@ import '@styles/globals.css';
 import PokemonList from 'src/components/PokemonList';
 
 import { fetchPokemonList } from "./api";
-import Image from 'next/image';
 
 import DisplayScreen from '../../assets/DisplayScreen.svg';
-import ProfilePicture from '../../assets/ProfilePicture.svg';
+import PokeDex from '../../assets/PokeDex.svg';
+
 import { useEffect, useState } from 'react';
-import { NamedAPIResourceList } from 'pokenode-ts';
+import { NamedAPIResourceList, Pokedexes } from 'pokenode-ts';
 
 export default function RootLayout({
     // Layouts must accept a children prop.
@@ -32,9 +32,16 @@ export default function RootLayout({
           <title>Next.js</title>
         </head>
         <body>
-        <div className="flex justify-center items-center">
-          <div>
-            <PokemonList data={data} />
+        <div className="flex justify-center">
+          <div className="flex mt-10" style={{
+            backgroundImage: `url(${PokeDex.src})`,
+            backgroundRepeat: 'no-repeat',
+            width: PokeDex.width,
+            height: PokeDex.height,
+          }}>
+            <div className="h-3/5 w-80 mt-16 ml-14 overflow-y-scroll text-4xl">
+              <PokemonList data={data} />
+            </div>
           </div>
           <div className="flex justify-end items-center" style={{
             backgroundImage: `url(${DisplayScreen.src})`,

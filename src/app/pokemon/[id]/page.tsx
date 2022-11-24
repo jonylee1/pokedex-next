@@ -1,4 +1,5 @@
 import { FlavorText, Pokemon, PokemonSpecies, PokemonType } from "pokenode-ts";
+import Image from 'next/image';
 
 interface PokemonPage {
     id: number,
@@ -37,11 +38,15 @@ export default async function Page(props: any) {
   const pokemonData = await fetchPokemon(props.params.id);
   const pokemonDescription = await fetchPokemonDescription(pokemonData.species.url)
   const pokemonType = formatPokemonType(pokemonData.types);
+  let pokemonSprite = pokemonData.sprites.front_default;
+  if (!pokemonSprite) {
+    pokemonSprite = '';
+  }
 
   if (pokemonData) {
       return (
         <>
-          <div className="flex flex-col w-1/5 h-3/4 mr-5">
+          <div className="flex flex-col w-1/3 h-3/4 mr-5">
             <div className="h-1/5 rounded-lg bg-white bg-opacity-30 mb-5">
               <div className="capitalize-first-letter text-4xl">
                 {pokemonData.name}
@@ -54,8 +59,8 @@ export default async function Page(props: any) {
               {pokemonDescription}
             </div>
           </div>
-          <div className="w-1/3 h-3/4 rounded-lg bg-white bg-opacity-30 mr-28">
-              Pokemon Image
+          <div className="w-5/12 h-3/4 rounded-lg bg-white bg-opacity-30 mr-24">
+              <Image className="w-full" src={pokemonSprite} alt={"faq"} width={96} height={96} />
           </div>
         </>
       )

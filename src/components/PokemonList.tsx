@@ -2,9 +2,8 @@ import { NamedAPIResourceList } from "pokenode-ts";
 
 const PokemonList = ({ data }: {data: NamedAPIResourceList}) => {
   if (data) {
-      console.log('inside pokemonlist', data);
       return (
-        <div>
+        <div className="text-black list-none">
           {data.results.map((pokemon) => {
             const pokemonURL = pokemon.url;
             const index = pokemonURL.indexOf('pokemon');

@@ -38,9 +38,8 @@ Tech Stack:
 TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
-** Display information about the selected pokemon.
-** Get the first english description for the pokemon (see Caterpie #10)
-** Get the sprite of the pokemon and display it.
+** Implement infinite scrolling for the list of pokemon (https://upmostly.com/tutorials/react-infinite-scroll)
+** Customize scrollbar
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -59,3 +58,9 @@ Learned:
 * NextJS adds <div>s for each Page (each nested route path adds more divs).
   This is because of React doesn't allow finding the DOM node from a component (see: https://github.com/vercel/next.js/discussions/41745#discussioncomment-3969587)
 * Found new CSS style. 'text-transform: capitalize' will capitalize the first letter of every word in that div (however, it will not make the rest of the letters lowercase).
+
+11/22/22
+* Loaded pictures from PokeAPI's URL and how to use NextJS's Image component.
+
+11/23/22
+* Updated the styling to match the new design.
