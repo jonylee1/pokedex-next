@@ -1,10 +1,10 @@
-import { NamedAPIResourceList } from "pokenode-ts";
+import { NamedAPIResource } from "pokenode-ts";
 
-const PokemonList = ({ data }: {data: NamedAPIResourceList}) => {
+const PokemonList = ({ data }: {data: NamedAPIResource[]}) => {
   if (data) {
       return (
         <div className="text-black list-none">
-          {data.results.map((pokemon) => {
+          {data.map((pokemon) => {
             const pokemonURL = pokemon.url;
             const index = pokemonURL.indexOf('pokemon');
             const pokemonPath = pokemonURL.substring(index);
@@ -14,7 +14,7 @@ const PokemonList = ({ data }: {data: NamedAPIResourceList}) => {
       )
   } else {
     return (
-      <></>
+      <>Loading...</>
     )
   }
 };

@@ -8,7 +8,7 @@ import DisplayScreen from '../../assets/DisplayScreen.svg';
 import PokeDex from '../../assets/PokeDex.svg';
 
 import { useEffect, useState } from 'react';
-import { NamedAPIResourceList, Pokedexes } from 'pokenode-ts';
+import { NamedAPIResource, } from 'pokenode-ts';
 
 export default function RootLayout({
     // Layouts must accept a children prop.
@@ -17,14 +17,28 @@ export default function RootLayout({
   }: {
     children: React.ReactNode;
   }) {
-
-    const [data, setData] = useState<NamedAPIResourceList>({count: 0, next: null, previous: null, results: []});
+    const [offset, setOffset] = useState(0);
+    const [postsPerPage, setPostsPerPage] = useState(20);
+    const [data, setData] = useState<NamedAPIResource[]>([]);
 
     useEffect(() => {
-      fetchPokemonList().then((data) => {
-        setData(data);
+      fetchPokemonList(offset, postsPerPage).then((newData) => {
+        setData(data.concat(newData.results));
       })
-    },[]);
+    },[offset]);
+
+    var handleScroll = () => {
+      const pokemonListElement = document.getElementById('pokemonList');
+      if (pokemonListElement) {
+        const isAtBottom = pokemonListElement.scrollHeight - pokemonListElement.scrollTop <= pokemonListElement.clientHeight;
+        
+        if (isAtBottom) {
+          setOffset(offset + postsPerPage);
+        }
+      } else {
+        console.log('pokemon list not found');
+      }
+    }
 
     return (
       <html lang="en">
@@ -32,26 +46,21 @@ export default function RootLayout({
           <title>Next.js</title>
         </head>
         <body>
-        <div className="flex justify-center">
-          <div className="flex mt-10" style={{
-            backgroundImage: `url(${PokeDex.src})`,
-            backgroundRepeat: 'no-repeat',
-            width: PokeDex.width,
-            height: PokeDex.height,
-          }}>
-            <div className="h-3/5 w-80 mt-16 ml-14 overflow-y-scroll text-4xl">
-              <PokemonList data={data} />
+          <div className="flex justify-center">
+            <div className="flex mt-10">
+              <div id="pokemonList" className="h-3/5 w-80 mt-16 ml-14 overflow-y-scroll text-4xl" onScroll={handleScroll} >
+                <PokemonList data={data} />
+              </div>
+            </div>
+            <div className="flex justify-end items-center" style={{
+              backgroundImage: `url(${DisplayScreen.src})`,
+              backgroundRepeat: 'no-repeat',
+              width: DisplayScreen.width,
+              height: DisplayScreen.height,
+            }}>
+              {children}
             </div>
           </div>
-          <div className="flex justify-end items-center" style={{
-            backgroundImage: `url(${DisplayScreen.src})`,
-            backgroundRepeat: 'no-repeat',
-            width: DisplayScreen.width,
-            height: DisplayScreen.height,
-          }}>
-            {children}
-          </div>
-        </div>
         </body>
       </html>
     );
