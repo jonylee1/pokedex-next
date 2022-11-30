@@ -34,11 +34,11 @@ export function formatPokemonType(types: PokemonType[]): string {
 }
 
 export default async function Page(props: any) {
-  console.log('inside Page');
+  console.log('inside pokemon Page: ', props);
   const pokemonData = await fetchPokemon(props.params.id);
-  console.log('pokemonData: ', pokemonData);
+  console.log('pokemonData', pokemonData);
   const pokemonDescription = await fetchPokemonDescription(pokemonData.species.url)
-  console.log('pokemonData: ', pokemonDescription);
+  console.log('pokemonDescription', pokemonDescription);
   const pokemonType = formatPokemonType(pokemonData.types);
   let pokemonSprite = pokemonData.sprites.front_default;
   if (!pokemonSprite) {

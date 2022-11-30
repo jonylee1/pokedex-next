@@ -10,6 +10,8 @@ import PokeDex from '../../assets/PokeDex.svg';
 import { useEffect, useState } from 'react';
 import { NamedAPIResource, } from 'pokenode-ts';
 
+
+export const revalidate = 5;
 export default function RootLayout({
     // Layouts must accept a children prop.
     // This will be populated with nested layouts or pages
@@ -22,7 +24,9 @@ export default function RootLayout({
     const [data, setData] = useState<NamedAPIResource[]>([]);
 
     useEffect(() => {
+      console.log('inside useEffect');
       fetchPokemonList(offset, postsPerPage).then((newData) => {
+        console.log('useEffect/newData: ', newData);
         setData(data.concat(newData.results));
       })
     },[offset]);
@@ -40,6 +44,7 @@ export default function RootLayout({
       }
     }
 
+    console.log('Layout/data: ', data);
     return (
       <html lang="en">
         <head>
@@ -47,7 +52,12 @@ export default function RootLayout({
         </head>
         <body>
           <div className="flex justify-center">
-            <div className="flex mt-10">
+            <div className="flex mt-10"  style={{
+            backgroundImage: `url(${PokeDex.src})`,
+            backgroundRepeat: 'no-repeat',
+            width: PokeDex.width,
+            height: PokeDex.height,
+          }}>
               <div id="pokemonList" className="h-3/5 w-80 mt-16 ml-14 overflow-y-scroll text-4xl" onScroll={handleScroll} >
                 <PokemonList data={data} />
               </div>
