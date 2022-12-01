@@ -1,12 +1,6 @@
 import { FlavorText, Pokemon, PokemonSpecies, PokemonType } from "pokenode-ts";
 import Image from 'next/image';
 
-interface PokemonPage {
-    id: number,
-    name: string,
-    type: string
-}
-
 export async function fetchPokemon(id: number): Promise<Pokemon> {
   const res = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${id}`
@@ -34,38 +28,39 @@ export function formatPokemonType(types: PokemonType[]): string {
 }
 
 export default async function Page(props: any) {
-  console.log('inside pokemon Page: ', props);
-  const pokemonData = await fetchPokemon(props.params.id);
-  console.log('pokemonData', pokemonData);
-  const pokemonDescription = await fetchPokemonDescription(pokemonData.species.url)
-  console.log('pokemonDescription', pokemonDescription);
-  const pokemonType = formatPokemonType(pokemonData.types);
-  let pokemonSprite = pokemonData.sprites.front_default;
-  if (!pokemonSprite) {
-    pokemonSprite = '';
-  }
+  // console.log('inside pokemon Page: ', props);
+  // const pokemonData = await fetchPokemon(props.params.id);
+  // console.log('pokemonData', pokemonData);
+  // const pokemonDescription = await fetchPokemonDescription(pokemonData.species.url)
+  // console.log('pokemonDescription', pokemonDescription);
+  // const pokemonType = formatPokemonType(pokemonData.types);
+  // let pokemonSprite = pokemonData.sprites.front_default;
+  // if (!pokemonSprite) {
+  //   pokemonSprite = '';
+  // }
 
-  if (pokemonData) {
-      return (
-        <>
-          <div className="flex flex-col w-1/3 h-3/4 mr-5">
-            <div className="h-1/5 rounded-lg bg-white bg-opacity-30 mb-5">
-              <div className="capitalize-first-letter text-4xl">
-                {pokemonData.name}
-              </div>
-              <div className="capitalize-first-letter text-4xl">
-                {pokemonType}
-              </div>
-            </div>
-            <div className="flex-grow rounded-lg bg-white bg-opacity-30">
-              {pokemonDescription}
-            </div>
-          </div>
-          <div className="w-5/12 h-3/4 rounded-lg bg-white bg-opacity-30 mr-24">
-              <Image className="w-full" src={pokemonSprite} alt={"faq"} width={96} height={96} />
-          </div>
-        </>
-      )
-  }
-  return <div>Loading...</div>
+  // if (pokemonData) {
+  //     return (
+  //       <>
+  //         <div className="flex flex-col w-1/3 h-3/4 mr-5">
+  //           <div className="h-1/5 rounded-lg bg-white bg-opacity-30 mb-5">
+  //             <div className="capitalize-first-letter text-4xl">
+  //               {pokemonData.name}
+  //             </div>
+  //             <div className="capitalize-first-letter text-4xl">
+  //               {pokemonType}
+  //             </div>
+  //           </div>
+  //           <div className="flex-grow rounded-lg bg-white bg-opacity-30">
+  //             {pokemonDescription}
+  //           </div>
+  //         </div>
+  //         <div className="w-5/12 h-3/4 rounded-lg bg-white bg-opacity-30 mr-24">
+  //             <Image className="w-full" src={pokemonSprite} alt={"faq"} width={96} height={96} />
+  //         </div>
+  //       </>
+  //     )
+  // }
+  // return <div>Loading...</div>
+  return <div>{props.params.id}</div>
 }

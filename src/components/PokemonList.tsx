@@ -1,6 +1,17 @@
 import { NamedAPIResource } from "pokenode-ts";
+import { useEffect, useState } from "react";
+import { fetchPokemonList, fetchStaticPokemonList } from "src/app/api";
 
-const PokemonList = ({ data }: {data: NamedAPIResource[]}) => {
+const PokemonList = ({ offset, postsPerPage }: {offset: number, postsPerPage: number}) => {
+  const [data, setData] = useState<NamedAPIResource[]>([]);
+  
+  useEffect(() => {
+    console.log('inside useEffect');
+    fetchPokemonList(offset, postsPerPage).then((newData) => {
+      setData(data.concat(newData.results));
+    })
+  },[offset]);
+
   return (
     <div className="text-black list-none">
       {data.map((pokemon) => {
