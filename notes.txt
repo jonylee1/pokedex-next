@@ -39,7 +39,7 @@ TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
 ** Customize scrollbar
-** Refactor PokemonList to fetch the data and take the fetching out of the RootLayout.
+** remake the site while following 'https://github.com/vercel/app-playground/tree/main/app/ssr' more closely.
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -70,3 +70,9 @@ Learned:
 
 11/29/22
 * Learned not to beta test software 👍
+
+11/30/22
+* Learned how to debug our application.
+
+12/01/22
+* Issue was not in the pokemon/[id]/page.tsx. Will try remaking the site with a static list of pokemon and following their SSR example more closely.
