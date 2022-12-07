@@ -38,8 +38,7 @@ Tech Stack:
 TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
-** Customize scrollbar
-** remake the site while following 'https://github.com/vercel/app-playground/tree/main/app/ssr' more closely.
+** Customize scrollbar (looking for a different example)
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -76,3 +75,10 @@ Learned:
 
 12/01/22
 * Issue was not in the pokemon/[id]/page.tsx. Will try remaking the site with a static list of pokemon and following their SSR example more closely.
+
+12/05/22
+* Started styling the scrollbar
+* Learned about "ref" and useRef.
+
+12/06/22
+* Reference that we were using is no good. It's using React 16.8 which is too old. A lot of the code they were using was causing errors in our version.
