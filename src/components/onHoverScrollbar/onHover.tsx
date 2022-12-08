@@ -10,6 +10,8 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
   const [lastScrollThumbPosition, setScrollThumbPosition] = useState(0);
   const [isDragging, setDragging] = useState(false);
 
+  const scrollHostRef = useRef<HTMLDivElement>(null);
+
   const handleMouseOver = useCallback(() => {
     !hovering && setHovering(true);
   }, [hovering]);
@@ -79,11 +81,10 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
     }
   }, []);
 
-  const scrollHostRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     console.log('scrollhostref useffect');
     if (scrollHostRef.current) {
+      console.log('scrollhostRef: ', scrollHostRef);
       const scrollHostElement = scrollHostRef.current;
       const { clientHeight, scrollHeight } = scrollHostElement;
       console.log('scrollhostelement/clientheight: ', clientHeight);
@@ -101,7 +102,7 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
         scrollHostElement.removeEventListener("scroll", handleScroll, true);
       };
     }
-  }, []);
+  }, [scrollHostRef.current?.scrollHeight]);
 
   useEffect(() => {
     //this is handle the dragging on scroll-thumb

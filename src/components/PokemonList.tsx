@@ -6,21 +6,29 @@ const PokemonList = ({ offset, postsPerPage }: {offset: number, postsPerPage: nu
   const [data, setData] = useState<NamedAPIResource[]>([]);
   
   useEffect(() => {
-    console.log('inside useEffect');
     fetchPokemonList(offset, postsPerPage).then((newData) => {
       setData(data.concat(newData.results));
     })
+    // setData(fetchStaticPokemonList.results);
   },[offset]);
 
   return (
-    <div className="text-black list-none">
+    // <div className="text-black list-none">
+    //   {data.map((pokemon) => {
+    //     const pokemonURL = pokemon.url;
+    //     const index = pokemonURL.indexOf('pokemon');
+    //     const pokemonPath = pokemonURL.substring(index);
+    //     return <li key={pokemon.name}><a href={`/${pokemonPath}`}>{pokemon.name}</a></li>
+    //   })}
+    // </div>
+    <>
       {data.map((pokemon) => {
         const pokemonURL = pokemon.url;
         const index = pokemonURL.indexOf('pokemon');
         const pokemonPath = pokemonURL.substring(index);
         return <li key={pokemon.name}><a href={`/${pokemonPath}`}>{pokemon.name}</a></li>
       })}
-    </div>
+    </>
   )
 };
 
