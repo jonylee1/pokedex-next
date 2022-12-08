@@ -39,6 +39,8 @@ TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
 ** Customize scrollbar (looking for a different example)
+** Continue working on scroll. The thumb height calculation is not correct, it's always showing the full bar.
+** Scrollbar track is overflowing to the full content instead of just the visible content.
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -82,3 +84,8 @@ Learned:
 
 12/06/22
 * Reference that we were using is no good. It's using React 16.8 which is too old. A lot of the code they were using was causing errors in our version.
+
+12/07/22
+* Using 'https://levelup.gitconnected.com/build-on-hover-custom-scrollbar-in-react-d846194a7ea4' to implement a scrollbar.
+* Learning the pieces of putting a scrollbar together.
+* When a component is re-rendering, a referenced DOM element can be null.

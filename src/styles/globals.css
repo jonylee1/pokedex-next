@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../components/onHoverScrollbar/onHover.css';
+
 html,
 body {
   padding: 0;
@@ -54,3 +56,14 @@ a {
 .capitalize-first-letter {
   text-transform: capitalize;
 }
+
+.scrollhost {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 100%;
+}
+
+.scrollhost::-webkit-scrollbar {
+  display: none;
+}
+

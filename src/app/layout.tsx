@@ -7,6 +7,8 @@ import PokeDex from '../../assets/PokeDex.svg';
 
 import { useState } from 'react';
 
+import CustomScrollDiv from '../components/onHoverScrollbar/onHover';
+
 export default function RootLayout({
     // Layouts must accept a children prop.
     // This will be populated with nested layouts or pages
@@ -44,8 +46,13 @@ export default function RootLayout({
             width: PokeDex.width,
             height: PokeDex.height,
           }}>
-              <div id="pokemonList" className="h-3/5 w-80 mt-16 ml-14 overflow-y-scroll text-4xl" onScroll={handleScroll} >
-                <PokemonList offset={offset} postsPerPage={postsPerPage} />
+              <div id="pokemonList" className="h-3/5 w-80 mt-16 ml-14 text-4xl">
+                <CustomScrollDiv>
+                  <PokemonList offset={offset} postsPerPage={postsPerPage} />
+                </CustomScrollDiv>
+                {/* <div className="scrollhost overflow-auto">
+                  <PokemonList offset={offset} postsPerPage={postsPerPage} />
+                </div> */}
               </div>
             </div>
             <div className="flex justify-end items-center" style={{
