@@ -40,7 +40,6 @@ TODO:
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
 ** Customize scrollbar (https://levelup.gitconnected.com/build-on-hover-custom-scrollbar-in-react-d846194a7ea4)
 ** Add a trigger to fetch more data to support infinite scrolling.
-** Scrollbar is flashing on hover instead of always on. Need to investigate.
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -92,3 +91,11 @@ Learned:
 
 12/08/22
 * Needed to add "scrollHeight" as a dependency to the useEffect that calculates the thumb height because the data loads up after the DOM renders.
+
+12/12/22
+* Scrollbar shows on MouseOver is alternating because we are entering and leaving the parent DOM whenever we hover over child elements.
+
+12/13/22
+* Did you know onMouseOut and onMouseLeave is different? onMouseOut triggers when leaving the element it is attached to, even if it's to a child element.
+  This causes the event to fire every time you transition to another child element or back into the parent element.
+  To prevent this, use onMouseLeave, which only fires once it leaves the area of the attached element.

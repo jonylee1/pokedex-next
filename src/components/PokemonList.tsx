@@ -21,14 +21,14 @@ const PokemonList = ({ offset, postsPerPage }: {offset: number, postsPerPage: nu
     //     return <li key={pokemon.name}><a href={`/${pokemonPath}`}>{pokemon.name}</a></li>
     //   })}
     // </div>
-    <>
+    <ul>
       {data.map((pokemon) => {
         const pokemonURL = pokemon.url;
         const index = pokemonURL.indexOf('pokemon');
         const pokemonPath = pokemonURL.substring(index);
         return <li key={pokemon.name}><a href={`/${pokemonPath}`}>{pokemon.name}</a></li>
       })}
-    </>
+    </ul>
   )
 };
 

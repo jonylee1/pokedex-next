@@ -16,7 +16,7 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
     !hovering && setHovering(true);
   }, [hovering]);
 
-  const handleMouseOut = useCallback(() => {
+  const handleMouseLeave = useCallback(() => {
     !!hovering && setHovering(false);
   }, [hovering]);
 
@@ -64,7 +64,6 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
     e.stopPropagation();
     setScrollThumbPosition(e.clientY);
     setDragging(true);
-    console.log("handleScrollThumbMouseDown");
   }, []);
 
   const handleScroll = useCallback(() => {
@@ -82,20 +81,14 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
   }, []);
 
   useEffect(() => {
-    console.log('scrollhostref useffect');
     if (scrollHostRef.current) {
-      console.log('scrollhostRef: ', scrollHostRef);
       const scrollHostElement = scrollHostRef.current;
       const { clientHeight, scrollHeight } = scrollHostElement;
-      console.log('scrollhostelement/clientheight: ', clientHeight);
-      console.log('scrollhostelement/scrollheight: ', scrollHeight);
       const scrollThumbPercentage = clientHeight / scrollHeight;
-      console.log('scrollthumbpercentage: ', scrollThumbPercentage);
       const scrollThumbHeight = Math.max(
         scrollThumbPercentage * clientHeight,
         SCROLL_BOX_MIN_HEIGHT
       );
-      console.log('scrollthumbheight: ', scrollThumbHeight);
       setScrollBoxHeight(scrollThumbHeight);
       scrollHostElement.addEventListener("scroll", handleScroll, true);
       return function cleanup() {
@@ -120,7 +113,7 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
     <div
       className={"scrollhost-container"}
       onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      onMouseLeave={handleMouseLeave}
     >
       <div ref={scrollHostRef} className={`scrollhost ${className}`} {...restProps}>
         {children}
