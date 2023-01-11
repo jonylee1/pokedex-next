@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import "./onHover.css";
+import "./CustomScrollDiv.css";
 
 const SCROLL_BOX_MIN_HEIGHT = 20;
 
-export default function CustomScrollDiv({ children, className, ...restProps  }: any) {
+export default function CustomScrollDiv({ updatePokemonListFunction, children, className = '', ...restProps  }: any) {
   const [hovering, setHovering] = useState(false);
   const [scrollBoxHeight, setScrollBoxHeight] = useState(SCROLL_BOX_MIN_HEIGHT);
   const [scrollBoxTop, setScrollBoxTop] = useState(0);
@@ -66,19 +66,28 @@ export default function CustomScrollDiv({ children, className, ...restProps  }: 
     setDragging(true);
   }, []);
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = () => {
     if (!scrollHostRef) {
       return;
     }
     if (scrollHostRef.current) {
       const scrollHostElement = scrollHostRef.current;
       const { scrollTop, scrollHeight, offsetHeight } = scrollHostElement;
-  
+
       let newTop = (scrollTop / scrollHeight) * offsetHeight;
-      newTop = Math.min(newTop, offsetHeight - scrollBoxHeight);
       setScrollBoxTop(newTop);
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    if (scrollHostRef.current) {
+      const scrollHostElement = scrollHostRef.current;
+      const { offsetHeight } = scrollHostElement;
+      if (Math.ceil(scrollBoxTop + scrollBoxHeight) >= offsetHeight) {
+        updatePokemonListFunction();
+      }
+    }
+  }, [scrollBoxTop])
 
   useEffect(() => {
     if (scrollHostRef.current) {

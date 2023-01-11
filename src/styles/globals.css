@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../components/onHoverScrollbar/onHover.css';
+@import '../components/CustomScrollDiv/CustomScrollDiv.css';
 
 html,
 body {

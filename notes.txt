@@ -38,8 +38,7 @@ Tech Stack:
 TODO:
 * Got data from PokeAPI and rendered it in a component on a page.
 * Render a pageable list of pokemon and load basic data about the pokemon when you click on it.
-** Customize scrollbar (https://levelup.gitconnected.com/build-on-hover-custom-scrollbar-in-react-d846194a7ea4)
-** Add a trigger to fetch more data to support infinite scrolling.
+** Persist Pokemon List through local storage.
 
 Learned:
 * Server and Client components need to be separated. Data is retrieved by Server components and displayed as static html. Interactive components can only exist in the Client components.
@@ -99,3 +98,11 @@ Learned:
 * Did you know onMouseOut and onMouseLeave is different? onMouseOut triggers when leaving the element it is attached to, even if it's to a child element.
   This causes the event to fire every time you transition to another child element or back into the parent element.
   To prevent this, use onMouseLeave, which only fires once it leaves the area of the attached element.
+
+1/9/23
+* Started implementing infinite scroll. For some reason, our state variables 'scrollBoxTop' and 'scrollBoxHeight' cannot be referenced correctly in
+  the 'handleScroll()' function.
+
+1/11/23
+* Got infinite scrolling working.
+* We now want to persist state when clicking to another pokemon. Let's try using local storage.

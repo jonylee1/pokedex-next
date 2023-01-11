@@ -9,18 +9,9 @@ const PokemonList = ({ offset, postsPerPage }: {offset: number, postsPerPage: nu
     fetchPokemonList(offset, postsPerPage).then((newData) => {
       setData(data.concat(newData.results));
     })
-    // setData(fetchStaticPokemonList.results);
   },[offset]);
 
   return (
-    // <div className="text-black list-none">
-    //   {data.map((pokemon) => {
-    //     const pokemonURL = pokemon.url;
-    //     const index = pokemonURL.indexOf('pokemon');
-    //     const pokemonPath = pokemonURL.substring(index);
-    //     return <li key={pokemon.name}><a href={`/${pokemonPath}`}>{pokemon.name}</a></li>
-    //   })}
-    // </div>
     <ul>
       {data.map((pokemon) => {
         const pokemonURL = pokemon.url;

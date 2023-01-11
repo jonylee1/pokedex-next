@@ -7,7 +7,7 @@ import PokeDex from '../../assets/PokeDex.svg';
 
 import { useState } from 'react';
 
-import CustomScrollDiv from '../components/onHoverScrollbar/onHover';
+import CustomScrollDiv from '../components/CustomScrollDiv/CustomScrollDiv';
 
 export default function RootLayout({
     // Layouts must accept a children prop.
@@ -19,18 +19,8 @@ export default function RootLayout({
     const [offset, setOffset] = useState(0);
     const [postsPerPage, setPostsPerPage] = useState(20);
 
-    var handleScroll = () => {
-      const pokemonListElement = document.getElementById('pokemonList');
-
-      if (pokemonListElement) {
-        const isAtBottom = pokemonListElement.scrollHeight - pokemonListElement.scrollTop <= pokemonListElement.clientHeight;
-        
-        if (isAtBottom) {
-          setOffset(offset + postsPerPage);
-        }
-      } else {
-        console.log('pokemon list not found');
-      }
+    const fetchMoreData = () => {
+      setOffset(offset + postsPerPage);
     }
   
     return (
@@ -47,12 +37,9 @@ export default function RootLayout({
             height: PokeDex.height,
           }}>
               <div id="pokemonList" className="h-3/5 w-80 mt-16 ml-14 text-4xl">
-                <CustomScrollDiv>
+                <CustomScrollDiv updatePokemonListFunction={fetchMoreData}>
                   <PokemonList offset={offset} postsPerPage={postsPerPage} />
                 </CustomScrollDiv>
-                {/* <div className="scrollhost overflow-auto">
-                  <PokemonList offset={offset} postsPerPage={postsPerPage} />
-                </div> */}
               </div>
             </div>
             <div className="flex justify-end items-center" style={{
